@@ -20,8 +20,16 @@ def shopSmart(orderList, fruitShops):
     """
 
     # *** Your Code Here ***
+    # Determine the best fruit shop based on which offers a lower price for a given order
+    lowestPrice = float('inf')
+    chosenShop = None
+    for fruitShop in fruitShops:
+        currentPrice = fruitShop.getPriceOfOrder(orderList)
+        if currentPrice < lowestPrice:
+            lowestPrice = currentPrice
+            chosenShop = fruitShop
 
-    return None
+    return chosenShop
 
 def main():
     dir1 = {
@@ -38,7 +46,6 @@ def main():
     shop2 = shop.FruitShop('shop2', dir2)
 
     shops = [shop1, shop2]
-
     orders = [('apples', 1.0), ('oranges', 3.0)]
     print("For orders: %s the best shop is %s." % (orders, shopSmart(orders, shops).getName()))
 
